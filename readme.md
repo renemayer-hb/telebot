@@ -17,7 +17,7 @@ Kurzanleitung zur Installation des telebot v3 (Python3):
 	sudo pip3 install psutil telepot requests
 	sudo pip install crudini
 	in /home/pi-star
-	git clone https://github.com/electrigga/telebot.git
+	git clone https://github.com/renemayer-hb/telebot.git
 	cd telebot
 	git checkout v3
 	die config.py editieren
