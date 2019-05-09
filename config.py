@@ -1,32 +1,29 @@
 # -*- coding: utf-8 -*-
 
+
+#[General]
 # prefered language
 # translations available
 # de = deutsch, en = english, sv = svenska, da = dansk, sl = Slovenski
-language = "de"
-
+language="de"
 # api_key you got from @botfather for your bot
 apikey = ""
-
-# brandmeister api
-bmapiactive = 1
-bmapi = ""
-
 # ACL for controll the repeater (your own ID should in here) (ID is NOT @username)
-grant = []
-
-# ID des Botowner / der Botowner (die bekommen Nachrichten über Statusänderungen)
-owner = []
-
+grant=[]
 # Call of repeater
-botcall = ""
+botcall="DL2RPM"
+# ID des Repeaters
+dmrid = "263305699"
+# ID des Botowner / der Botowner (die bekommen Nachrichten über Statusänderungen)
+owner=[]
+
+#[Services]
+# brandmeister api
+bmapiactive=1
+bmapi="CvhPHxDNMzOMjnAtGta4jtww3WGIwFk67BVP5wAS2lBmJ9PnC$rWqYquR39lJtrQ1jD7QbZTwyccH@AgZ.9nWARLD$3jru7tOLABWwsp1ECID9ZA86X2GLNhJQA7iIA4"
 
 # Liste of processes
-prozesse=["MMDVMHost","DMRGateway","YSFGateway","ircddbgatewayd","DAPNETGateway","P25Gateway","NXDNGateway","DMR2YSF","DMR2NXDN","YSF2DMR","YSF2NXDN","YSF2P25","NXDN2DMR"]
-
-
-# ID des Repeaters
-dmrid = ""
+prozesse=["MMDVMHost","DMRGateway","YSFGateway","ircddbgatewayd","YSF2DMR"]
 
 # folder which contains mmdvm-logs
 pistar_mmdvmlogs = "/var/log/pi-star"
@@ -42,13 +39,13 @@ gwprefix = "DMRGateway"
 mmdvmaufruf = "/usr/bin/screen -d -m -S MMDVM /home/pi/MMDVMHost/MMDVMHost /home/pi/MMDVMHost/MMDVM-DB0SBN.ini"
 # how to start dmrgw should it be active?
 dmrgwaufruf = "/usr/bin/screen -d -m -S DMRGW /home/pi/DMRGateway/DMRGateway /home/pi/DMRGateway/DMRGateway.ini"
-dmrgwaktiv = 1
+dmrgwaktiv = 0
 # how to start ysfgw
 ysfgw = "sudo /etc/init.d/YSFGateway.sh start"
-ysfgwaktiv = 1
+ysfgwaktiv = 0
 # how to start ircdbbgw
 ircdbbgw = "sudo /etc/init.d/ircddbgateway start"
-ircdbbgwaktiv = 1
+ircdbbgwaktiv = 0
 
 
 logfile = "botlog.txt"
@@ -74,6 +71,6 @@ svxactive = 0
 svxlogic = "/home/pi/remote/svx_pty.RepeaterLogic"
 
 #### Pi-Star Kommandos aktivieren
-ispistar = 1
+ispistar = 0
 
-backupfiles = ["/home/pi-star/telebot/config.py","/etc/*","/var/log/*"]
+backupfiles = ["/home/pi/software/telebot/config.py","/home/pi/software/telebot/commands.py","/etc/*","/var/log/*","/opt/*/*.ini"]

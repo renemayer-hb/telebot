@@ -41,11 +41,12 @@ Dort dann
 Fragen, Anregungen, Wünsche und Hilfe bekommt ihr standesgemäß über Telegram. Dort einfach an in die Gruppe telebot schreiben: https://t.me/joinchat/E9aKOhLeY_fCgjCT8Txn_g
 
 
-Kurzanleitung zur Installation des telebot auf Pi-Star:
+Kurzanleitung zur Installation des telebot v3 (Python3):
 
 	rpi-rw
-	sudo apt-get install python-pip
-	sudo pip install psutil telepot requests crudini
+	sudo apt-get install python-pip python-pip3
+	sudo pip3 install psutil telepot requests
+	sudo pip install crudini
 	in /home/pi-star
 	git clone https://github.com/electrigga/telebot.git
 	cd telebot
