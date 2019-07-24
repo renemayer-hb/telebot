@@ -20,7 +20,7 @@ owner=[]
 #[Services]
 # brandmeister api
 bmapiactive=1
-bmapi="CvhPHxDNMzOMjnAtGta4jtww3WGIwFk67BVP5wAS2lBmJ9PnC$rWqYquR39lJtrQ1jD7QbZTwyccH@AgZ.9nWARLD$3jru7tOLABWwsp1ECID9ZA86X2GLNhJQA7iIA4"
+bmapi=""
 
 # Liste of processes
 prozesse=["MMDVMHost","DMRGateway","YSFGateway","ircddbgatewayd","YSF2DMR"]
