@@ -13,9 +13,9 @@ Registrieren des Bots bei Telegram
 Kurzanleitung zur Installation des telebot v3 (Python3):
 
 	rpi-rw
-	sudo apt-get install python-pip python-pip3
-	sudo pip3 install psutil telepot requests
-	sudo pip install crudini
+	sudo apt-get install python3-pip
+	sudo apt-get install python-rpi.gpio python3-rpi.gpio
+	sudo pip3 install psutil telepot requests crudini 
 	in /home/pi-star
 	git clone https://github.com/renemayer-hb/telebot.git
 	cd telebot
