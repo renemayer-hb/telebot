@@ -11,9 +11,9 @@ apikey = ""
 # ACL for controll the repeater (your own ID should in here) (ID is NOT @username)
 grant=[]
 # Call of repeater
-botcall="DL2RPM"
+botcall=""
 # ID des Repeaters
-dmrid = "263305699"
+dmrid = ""
 # ID des Botowner / der Botowner (die bekommen Nachrichten über Statusänderungen)
 owner=[]
 
@@ -71,6 +71,6 @@ svxactive = 0
 svxlogic = "/home/pi/remote/svx_pty.RepeaterLogic"
 
 #### Pi-Star Kommandos aktivieren
-ispistar = 0
+ispistar = 1
 
 backupfiles = ["/home/pi/software/telebot/config.py","/home/pi/software/telebot/commands.py","/etc/*","/var/log/*","/opt/*/*.ini"]
