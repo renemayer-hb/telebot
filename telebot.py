@@ -248,7 +248,7 @@ def prozesschecker(prozess):
 #check ob der dienst laut INI schon läuft
 def psinicheck(file,section,key):
 	value = subprocess.check_output("sudo crudini --get " + file + " " + section + " " + key, shell=True)
-	if "1" in value:
+	if "1" in str(value):
 		return True
 	else:
 		return False
