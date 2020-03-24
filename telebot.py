@@ -434,7 +434,7 @@ def on_callback_query(msg):
 
 	elif query_data == "/backup":
 		if from_id in grant:
-			backuparchive = botpath + '/backup-' + datetime.datetime.now().strftime("%Y.%m.%d-%H:%M") + '.zip'
+			backuparchive = botpath + '/backup-' + botcall + '-' + datetime.datetime.now().strftime("%Y.%m.%d-%H:%M") + '.zip'
 			os.system(rpirw)
 			for backupfile in backupfiles:
 				os.system('sudo zip ' + backuparchive + ' ' + backupfile)
