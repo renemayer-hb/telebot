@@ -26,3 +26,8 @@ Kurzanleitung zur Installation des telebot v3 (Python3):
 	sudo systemctl enable telebot.service
 	sudo systemctl start telebot.service
 
+Update:
+die config.py wird nicht mehr ersetzt.
+Es wird eine Datei namens: config_new.py heruntergeladen.
+Diese Datei kann mit den alten einstellungen gefüllt werden und dann ersetzt Sie die config.py
+Die Umbenennung muss von Hand erfolgen.

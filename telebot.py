@@ -20,6 +20,11 @@ from config import (apikey, grant, owner, botcall, prozesse, dmrid, mmdvmlogs, s
 # Import Commands
 from commands import (rpirw, rpiro, psstart, psstop, psstart_mmdvm_dmr, psstop_mmdvm_dmr, psstart_mmdvm_ysf, psstop_mmdvm_ysf, psstart_mmdvm_dstar, psstop_mmdvm_dstar, psstart_mmdvm_p25, psstop_mmdvm_p25, psstart_mmdvm_pocsag, psstop_mmdvm_pocsag, psstart_mmdvm_ysf2dmr, psstop_mmdvm_ysf2dmr, psstart_mmdvm_dmrxlx, psstop_mmdvm_dmrxlx, dapnetsend)
 
+#import pistar menue
+from config import(mmdvm_dmr,mmdvm_ysf,mmdvm_dstar,mmdvm_p25,mmdvm_pocsag,mmdvm_dmrxlx,mmdvmpocsag)
+
+
+
 user_states = {}
 botpath = os.path.dirname(os.path.realpath(__file__))
 trans = gettext.translation("telebot", botpath + "/locale", [language])
@@ -39,19 +44,22 @@ def initialkb(chat_id,id):
 	if chatcount == 0:
 		if id in grant:
 		#### Keyboard with init functions
-			if ispistar == 0:
-				markup = ReplyKeyboardMarkup(keyboard=[
-					['/lh', '/status'],
-					['/tg', '/bm', '/help'],
-					['/gpio', '/sw', '/svx'],
-					['/misc']
-				])
+			keyboard=[['/lh','/tg','/status']]
+			keyboard.append(['/bm'])
+			if ispistar==1:
+				keyboard_nested=keyboard[1]
+				keyboard_nested.append('/pistar')
 			else:
-				markup = ReplyKeyboardMarkup(keyboard=[
-					['/lh', '/status'],
-					['/tg', '/bm', '/help'],
-					['/gpio', '/pistar','/misc']
-				])
+				keyboard_nested=keyboard[1]
+				keyboard_nested.append('/sw')
+			if svxactive==1:
+				keyboard_nested=keyboard[1]
+				keyboard_nested.append('/svx')
+			if gpioactive==1:
+					keyboard.append(['/gpio','/help','/misc'])
+			else:
+				keyboard.append(['/help','/misc'])
+			markup = ReplyKeyboardMarkup(keyboard=keyboard)
 			bot.sendMessage(chat_id, _('basic_commands'), reply_markup=markup)
 		else:
 		#### Keyboard with init functions
@@ -934,46 +942,53 @@ def on_chat_message(msg):
 	### Pi-Star Handle ###
 	elif msg['text'] in ["/pistar"]:
 		if id in grant and ispistar == 1:
-			keyboard = InlineKeyboardMarkup(inline_keyboard=[
-				[
-					InlineKeyboardButton(text=_('btn_psstart_mmdvm_dmr'), callback_data='/psstart_mmdvm_dmr'),
-					InlineKeyboardButton(text=_('btn_psstop_mmdvm_dmr'), callback_data='/psstop_mmdvm_dmr')
-				],
-				[
-					InlineKeyboardButton(text=_('btn_psstart_mmdvm_ysf'), callback_data='/psstart_mmdvm_ysf'),
-					InlineKeyboardButton(text=_('btn_psstop_mmdvm_ysf'), callback_data='/psstop_mmdvm_ysf')
-				],
-				[
-					InlineKeyboardButton(text=_('btn_psstart_mmdvm_dstar'), callback_data='/psstart_mmdvm_dstar'),
-					InlineKeyboardButton(text=_('btn_psstop_mmdvm_dstar'), callback_data='/psstop_mmdvm_dstar')
-				],
-				[
-					InlineKeyboardButton(text=_('btn_psstart_mmdvm_p25'), callback_data='/psstart_mmdvm_p25'),
-					InlineKeyboardButton(text=_('btn_psstop_mmdvm_p25'), callback_data='/psstop_mmdvm_p25')
-				],
-				[
-					InlineKeyboardButton(text=_('btn_psstart_mmdvm_pocsag'), callback_data='/psstart_mmdvm_pocsag'),
-					InlineKeyboardButton(text=_('btn_psstop_mmdvm_pocsag'), callback_data='/psstop_mmdvm_pocsag')
-				],
-				[
-					InlineKeyboardButton(text=_('btn_psstart_mmdvm_dmrxlx'), callback_data='/psstart_mmdvm_dmrxlx'),
-					InlineKeyboardButton(text=_('btn_psstop_mmdvm_dmrxlx'), callback_data='/psstop_mmdvm_dmrxlx')
-				],
-				[
+			keyboard=[]
+			if mmdvm_dmr==1:
+				keyboard.append([
+						InlineKeyboardButton(text=_('btn_psstart_mmdvm_dmr'), callback_data='/psstart_mmdvm_dmr'),
+						InlineKeyboardButton(text=_('btn_psstop_mmdvm_dmr'), callback_data='/psstop_mmdvm_dmr')
+					])
+			if mmdvm_ysf==1:
+				keyboard.append([
+						InlineKeyboardButton(text=_('btn_psstart_mmdvm_ysf'), callback_data='/psstart_mmdvm_ysf'),
+						InlineKeyboardButton(text=_('btn_psstop_mmdvm_ysf'), callback_data='/psstop_mmdvm_ysf')
+					])
+			if mmdvm_dstar==1:
+				keyboard.append([
+						InlineKeyboardButton(text=_('btn_psstart_mmdvm_dstar'), callback_data='/psstart_mmdvm_dstar'),
+						InlineKeyboardButton(text=_('btn_psstop_mmdvm_dstar'), callback_data='/psstop_mmdvm_dstar')
+					])
+			if mmdvm_p25==1:
+				keyboard.append([
+						InlineKeyboardButton(text=_('btn_psstart_mmdvm_p25'), callback_data='/psstart_mmdvm_p25'),
+						InlineKeyboardButton(text=_('btn_psstop_mmdvm_p25'), callback_data='/psstop_mmdvm_p25')
+					])
+			if mmdvmpocsag==1:
+				keyboard.append([
+						InlineKeyboardButton(text=_('btn_psstart_mmdvm_pocsag'), callback_data='/psstart_mmdvm_pocsag'),
+						InlineKeyboardButton(text=_('btn_psstop_mmdvm_pocsag'), callback_data='/psstop_mmdvm_pocsag')
+					])
+			if mmdvm_dmrxlx==1:
+				keyboard.append([
+						InlineKeyboardButton(text=_('btn_psstart_mmdvm_dmrxlx'), callback_data='/psstart_mmdvm_dmrxlx'),
+						InlineKeyboardButton(text=_('btn_psstop_mmdvm_dmrxlx'), callback_data='/psstop_mmdvm_dmrxlx')
+					])
+#			if mmdvm_ysf2dmr==1:
+#				keyboard.append([
+#						InlineKeyboardButton(text=_('btn_psstart_mmdvm_ysf2dmr'), callback_data='/psstart_mmdvm_ysf2dmr'),
+#						InlineKeyboardButton(text=_('btn_psstop_mmdvm_ysf2dmr'), callback_data='/psstop_mmdvm_ysf2dmr')
+#					])
+			keyboard.append([
 					InlineKeyboardButton(text=_('btn_psupdate'), callback_data='/psupdate'),
 					InlineKeyboardButton(text=_('btn_psupgrade'), callback_data='/psupgrade')
-				],
-#				[
-#					InlineKeyboardButton(text=_('btn_psstart_mmdvm_ysf2dmr'), callback_data='/psstart_mmdvm_ysf2dmr'),
-#					InlineKeyboardButton(text=_('btn_psstop_mmdvm_ysf2dmr'), callback_data='/psstop_mmdvm_ysf2dmr')
-#				],
-				[
-					 InlineKeyboardButton(text=_('btn_psdapnetsend'), callback_data='/dapnetsend')
-				],
-				[
-					 InlineKeyboardButton(text=_('btn_psrestart_mmdvm'), callback_data='/psrestartmmdvm')
-				]
-			])
+				])
+			if mmdvmpocsag==1:
+				keyboard.append([
+						InlineKeyboardButton(text=_('btn_psdapnetsend'), callback_data='/dapnetsend')
+					])
+			keyboard.append([InlineKeyboardButton(text=_('btn_psrestart_mmdvm'), callback_data='/psrestartmmdvm')
+				])
+			keyboard = InlineKeyboardMarkup(inline_keyboard=keyboard)
 			bot.sendMessage(chat_id, _('Pi-Star Menue'), reply_markup=keyboard)
 		else:
 			msgfuncgrantfehler(msg,chat_id)
