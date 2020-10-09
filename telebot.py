@@ -978,14 +978,14 @@ def on_chat_message(msg):
 #						InlineKeyboardButton(text=_('btn_psstart_mmdvm_ysf2dmr'), callback_data='/psstart_mmdvm_ysf2dmr'),
 #						InlineKeyboardButton(text=_('btn_psstop_mmdvm_ysf2dmr'), callback_data='/psstop_mmdvm_ysf2dmr')
 #					])
-			keyboard.append([
-					InlineKeyboardButton(text=_('btn_psupdate'), callback_data='/psupdate'),
-					InlineKeyboardButton(text=_('btn_psupgrade'), callback_data='/psupgrade')
-				])
 			if mmdvmpocsag==1:
 				keyboard.append([
 						InlineKeyboardButton(text=_('btn_psdapnetsend'), callback_data='/dapnetsend')
 					])
+			keyboard.append([
+					InlineKeyboardButton(text=_('btn_psupdate'), callback_data='/psupdate'),
+					InlineKeyboardButton(text=_('btn_psupgrade'), callback_data='/psupgrade')
+				])
 			keyboard.append([InlineKeyboardButton(text=_('btn_psrestart_mmdvm'), callback_data='/psrestartmmdvm')
 				])
 			keyboard = InlineKeyboardMarkup(inline_keyboard=keyboard)
