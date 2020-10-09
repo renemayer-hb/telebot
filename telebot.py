@@ -804,7 +804,7 @@ def on_chat_message(msg):
 		hilfetext = _("info_commands") + "\n" + "/status " + _("status_help") + "\n" + "/help " + _("help_help") + "\n" + \
 		"/tg " + _("tg_help") + "\n" + "/lh " + _("lh_help") + "\n" + "/lh CALL " + _("lh_CALL_help")
 		if id in grant:
-			hilfetext += "\n\n" + "/gpio " + _("gpio_help") + "\n" + "/sw " + _("sw_help") + "\n" + "/svx " + _("svx_help") + "\n" + "/addbmtg " + _("addbmtg_help") + " \n" + "/delbmtg " + _("addbmtg_help") 
+			hilfetext += "\n\n" + "/gpio " + _("gpio_help") + "\n" + "/sw " + _("sw_help") + "\n" + "/svx " + _("svx_help") + "\n" + "/addbmtg " + _("addbmtg_help") + " \n" + "/delbmtg " + _("delbmtg_help") 
 			bot.sendMessage(chat_id,botcall + " " + hilfetext)
 
 	elif msg['text'] in ["/tg"]:
@@ -1125,7 +1125,7 @@ def on_chat_message(msg):
 
 	elif "/addbmtg" in msg['text']:
 		if id in grant:
-			if "/add " in msg['text']:
+			if "/addbmtg " in msg['text']:
 				suche = msg['text'].split(" ")
 				bmts = suche[1]
 				bmtg = suche[2]
@@ -1136,13 +1136,13 @@ def on_chat_message(msg):
 				value = requests.post("https://api.brandmeister.network/v1.0/repeater/talkgroup/?action=ADD&id=" + dmrid, data=datas, auth=HTTPBasicAuth(bmapi,''), headers=header)
 				bot.sendMessage(chat_id,value.text)
 			else:
-				bot.sendMessage(chat_id,_("write ") + _("/add TS TG"))
+				bot.sendMessage(chat_id,_("write ") + _("/addbmtg TS TG"))
 		else:
 			msgfuncgrantfehler(msg,chat_id)
 
 	elif "/delbmtg" in msg['text']:
 		if id in grant:
-			if "/del " in msg['text']:
+			if "/delbmtg " in msg['text']:
 				suche = msg['text'].split(" ")
 				bmts = suche[1]
 				bmtg = suche[2]
@@ -1260,7 +1260,10 @@ def on_chat_message(msg):
 			msgfuncgrantfehler(msg,chat_id)
 
 	else:
-		bot.sendMessage(chat_id, _("no_idea_command") + msg['text'] + " "  + vorname + "!\n" + _("cmd_list_with /help."))
+		if chatcount == 0:
+			initialkb(chat_id,id)
+		else:
+			bot.sendMessage(chat_id, _("no_idea_command") + msg['text'] + " "  + vorname + "!\n" + _("cmd_list_with /help."))
 
 	# bot.sendMessage(chat_id, befehlsliste(id))
 	initialkb(chat_id,id)
